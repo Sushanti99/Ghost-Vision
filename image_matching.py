@@ -34,6 +34,12 @@ threshold=0.80
 
 #Checking if Image is in the frame
 while(True):
+    frame = cap.read()[1]
+    cv2.imshow('frame',frame)
+    k=cv2.waitKey(10)
+    if k==27:
+        break
+
     if np.any(res>=threshold):
         loc=np.where(res>=threshold)
         for pt in zip(*loc[::-1]):
@@ -45,3 +51,5 @@ while(True):
 
     else:
         print('Image not found')
+
+cv2.destroyAllWindows()
